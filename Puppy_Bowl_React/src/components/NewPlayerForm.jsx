@@ -1,47 +1,25 @@
-import { useState } from "react";
+
 
 
 export default function NewPlayerForm() {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState(null);
-    
-    async function handleSubmit(event) {
-        event.preventDefault();
-        //console.log("Hello");
-        
+
+ 
+  
+    return (
+    async function NewPlayerForm(playerObj) {
         try {
-            const response = await fetch("https://fsa-jwt-practice.herokuapp.com/signup", {
+          const response = await fetch(`${API_URL}/players`, {
             method: "POST",
+            body: JSON.stringify(playerObj),
             headers: {
-                "Content-Type": "application/json"
+              "Content-Type": "application/json",
             },
-            body: JSON.stringify({ username, password }),
-        });
-
-            const result = await response.json();
-            console.log(result);
-
+            });
+          const result = await response.json();
+          console.log("result", result);
         } catch (error) {
-          setError(error.message);
+          console.error("Oops, something went wrong with adding that player!", error);
         }
+    
       }
-        
-      return (
-        <>
-      
-                <h2>Sign Up!</h2>
-                {error && <p>{error}</p>}
-    <form onSubmit={handleSubmit}>...
-    setToken(result.token);
-        <label>
-            Username: <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-        </label>
-        <label>
-            Password: <input type="text" value={password} onChange={(e) => setPassword(e.target.value)}/>
-        </label>
-        <button>Submit</button>
-    </form>
-    </>
-      );
-}
+      )};

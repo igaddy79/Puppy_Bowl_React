@@ -1,35 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { fetchPlayers } from "../index";
 
 export default function AllPlayers() {
-    const [successMessage, setSuccessMessage] = useState(null);
-    const [error, setError] = useState(null);
-  
-    async function handleClick() {
+  const [players, setPlayers] = useState([]);
+        
+  useEffect(()=>{
+
+    async function getAllPlayers() {
       try {
-        const response = await fetch(
-            "https://fsa-jwt-practice.herokuapp.com/authenticate",
-              {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-                },
-               }
-            );
-            const result = await response.json();
-            setSuccessMessage(result.message);
-      } catch (error) {
-        setError(error.message);
+        const playersData = await fetchPlayers();
+        setPlayers(playersData);
+      
+      }catch (error) {
+        console.error("oh no i couldnt fetch allplayers:", error);
       }
     }
-  
+
+    getAllPlayers();
+      //console.log("Hello");
+
+},[]);
+
     return (
-      <div>
-              <h2>Authenticate</h2>
-              {successMessage && <p>{successMessage}</p>}
-              {error && <p>{error}</p>}
-              <button onClick={handleClick}>Authenticate Token!</button>
-            
-      </div>
-    );
-  }
+      <>
+      {players.length > 0 ? ( 
+        <>
+          <div>Selected Contact View</div>
+          {players.map((player) => ( 
+            <div key={player.id}>
+              <h4>{player.name}</h4>
+            </div>
+          ))}
+        </>
+      ) : (
+        <p>Loading players...</p> 
+      )}
+    </>
+  );
+}

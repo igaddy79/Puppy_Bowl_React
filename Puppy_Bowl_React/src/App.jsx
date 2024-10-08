@@ -1,24 +1,32 @@
-import { useState } from 'react';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
 import AllPlayers from "./components/AllPlayers";
 import NavBar from "./components/NavBar";
-import NewPlayerForm from "./components/NewPlayerForm";
-import SinglePlayer from "./components/SinglePlayer";
-
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  
   return (
-    <>
-      <AllPlayers />
+    // <>
+    //   <NavBar />
       
+    //   <AllPlayers />
+      
+    //   <NavBar />
+
+    //   <NewPlayerForm />
+
+    //   <SinglePlayer />
+    // </>
+
+
+    <Router>
       <NavBar />
-
-      <NewPlayerForm />
-
-      <SinglePlayer />
-    </>
+    <Routes>
+      <Route path="/allplayers" element={<AllPlayers />} />
+      <Route path="/allplayers" element={<AllPlayers />} />
+      <Route path="/allplayers" element={<AllPlayers />} />
+    </Routes>
+    </Router>
   );
 }
 

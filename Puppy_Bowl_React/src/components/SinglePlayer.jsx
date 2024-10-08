@@ -1,8 +1,7 @@
-import { useState } from "react";
 
 export default function SinglePlayer() {
-    const [successMessage, setSuccessMessage] = useState(null);
-    const [error, setError] = useState(null);
+    // const [successMessage, setSuccessMessage] = useState(null);
+    // const [error, setError] = useState(null);
   
     async function handleClick() {
       try {
