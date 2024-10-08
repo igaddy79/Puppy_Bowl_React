@@ -1,34 +1,25 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function SinglePlayer() {
-    // const [successMessage, setSuccessMessage] = useState(null);
-    // const [error, setError] = useState(null);
-  
-    async function handleClick() {
-      try {
-        const response = await fetch(
-            "https://fsa-jwt-practice.herokuapp.com/authenticate",
-              {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-                },
-               }
-            );
-            const result = await response.json();
-            setSuccessMessage(result.message);
-      } catch (error) {
-        setError(error.message);
-      }
-    }
-  
-    return (
-      <div>
-              <h2>Authenticate</h2>
-              {successMessage && <p>{successMessage}</p>}
-              {error && <p>{error}</p>}
-              <button onClick={handleClick}>Authenticate Token!</button>
-            
-      </div>
-    );
-  }
+const SinglePlayer = ({ puppy, RemovePuppy }) => {
+  const navigate = useNavigate();
+
+  const puppyDetails = () => {
+
+    navigate(`/players/${puppy.id}`);
+  };
+
+
+  return (
+    <div className="puppy-card">
+      <h4>{puppy.name}</h4>
+      <img src={puppy.imageUrl} alt={puppy.name} />
+      <p>Breed: {puppy.breed}</p>
+      <p>Status: {puppy.status}</p>
+      <button onClick={() => RemovePuppy(puppy.id)}>Remove</button>
+      <button onClick={handleViewDetails}>View Puppy Details</button>
+    </div>
+  );
+};
+
+export default SinglePlayer;

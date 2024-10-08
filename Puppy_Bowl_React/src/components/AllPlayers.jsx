@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchPlayers } from "../index";
+import { fetchPlayers } from "../API/index";
 
 export default function AllPlayers() {
   const [players, setPlayers] = useState([]);
