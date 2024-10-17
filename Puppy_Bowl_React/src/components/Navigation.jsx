@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import './Navbar.css';
 
 
-export default function Navbar() {
+export default function Navigation() {
   return (
     <nav>
       <ul>
@@ -12,9 +12,7 @@ export default function Navbar() {
         <li>
           <Link to="/Allplayers">AllPlayers</Link>
         </li>
-        <li>
-          <Link to="/SinglePlayer">SinglePlayer</Link>
-        </li>
+        
       </ul>
     </nav>
   );

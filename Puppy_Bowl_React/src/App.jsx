@@ -1,22 +1,25 @@
-import React from 'react';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import AllPlayers from "./components/AllPlayers";
-import NavBar from "./components/NavBar";
+import Navigation from './components/Navigation';
 import NewPlayerForm from './components/NewPlayerForm';
 import SinglePlayer from './components/SinglePlayer';
 
 function App() {
   
   return (  
-    <Router>
-      <NavBar />
+    <BrowserRouter>
+    <>
+      <Navigation />
+      <h1>PUPPY BOWL</h1>
     <Routes>
       <Route path="/Allplayers" element={<AllPlayers />} />
       <Route path="/NewPlayerForm" element={<NewPlayerForm />} />
-      <Route path="/Allplayers/:playerId" element={<SinglePlayer />} /> 
+      <Route path="/players/:id" element={<SinglePlayer />} /> 
     </Routes>
-    </Router>
+    
+</>
+    </BrowserRouter>
   );
 }
 
